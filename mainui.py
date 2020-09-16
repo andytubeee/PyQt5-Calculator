@@ -90,77 +90,20 @@ class Ui_MainUI(object):
 
     def add_onclick(self):
 
-        if (len(str(self.first_num.toPlainText())) > 0 and len(str(self.sec_num.toPlainText())) > 0):
-            ans = QMessageBox()
-            ans.setIcon(QMessageBox.Information)
-            ans.setText(
-                f"The sum of {self.first_num.toPlainText().strip()} and {self.sec_num.toPlainText().strip()} is {float(self.first_num.toPlainText()) + float(self.sec_num.toPlainText())}")
-            ans.setWindowTitle("Addition / Sum")
-            ans.setStandardButtons(QMessageBox.Ok)
-            x = ans.exec_()
-        else:
-            ans = QMessageBox()
-            ans.setIcon(QMessageBox.Critical)
-            ans.setText(
-                f"Input value cannot be empty!")
-            ans.setWindowTitle("Error")
-            ans.setStandardButtons(QMessageBox.Ok)
-            x = ans.exec_()
-
-    def sub_onclick(self):
-
-        if (len(str(self.first_num.toPlainText())) > 0 and len(str(self.sec_num.toPlainText())) > 0):
-            ans = QMessageBox()
-            ans.setIcon(QMessageBox.Information)
-            ans.setText(
-                f"{self.first_num.toPlainText().strip()} subtracted by {self.sec_num.toPlainText().strip()} is {float(self.first_num.toPlainText()) - float(self.sec_num.toPlainText())}")
-            ans.setWindowTitle("Subtraction")
-            ans.setStandardButtons(QMessageBox.Ok)
-            x = ans.exec_()
-        else:
-            ans = QMessageBox()
-            ans.setIcon(QMessageBox.Critical)
-            ans.setText(
-                f"Input value cannot be empty!")
-            ans.setWindowTitle("Error")
-            ans.setStandardButtons(QMessageBox.Ok)
-            x = ans.exec_()
-
-    def mul_onclick(self):
-
-        if (len(str(self.first_num.toPlainText())) > 0 and len(str(self.sec_num.toPlainText())) > 0):
-            ans = QMessageBox()
-            ans.setIcon(QMessageBox.Information)
-            ans.setText(
-                f"The product of {self.first_num.toPlainText()} and {self.sec_num.toPlainText()} is {float(self.first_num.toPlainText()) * float(self.sec_num.toPlainText())}")
-            ans.setWindowTitle("Multiplication / Product")
-            ans.setStandardButtons(QMessageBox.Ok)
-            x = ans.exec_()
-        else:
-            ans = QMessageBox()
-            ans.setIcon(QMessageBox.Critical)
-            ans.setText(
-                f"Input value cannot be empty!")
-            ans.setWindowTitle("Error")
-            ans.setStandardButtons(QMessageBox.Ok)
-            x = ans.exec_()
-
-    def div_onclick(self):
-        if str(self.sec_num.toPlainText()) == "0":
-            ans = QMessageBox()
-            ans.setIcon(QMessageBox.Critical)
-            ans.setText(
-                f"You can't divide by zero!")
-            ans.setWindowTitle("Error")
-            ans.setStandardButtons(QMessageBox.Ok)
-            x = ans.exec_()
-        else:
+        try:
             if (len(str(self.first_num.toPlainText())) > 0 and len(str(self.sec_num.toPlainText())) > 0):
                 ans = QMessageBox()
                 ans.setIcon(QMessageBox.Information)
+
+                if "." in str(self.first_num.toPlainText()) or "." in str(self.sec_num.toPlainText()):
+                    sum = float(float(self.first_num.toPlainText()) +
+                                float(self.sec_num.toPlainText()))
+                else:
+                    sum = int(int(self.first_num.toPlainText()) +
+                              int(self.sec_num.toPlainText()))
                 ans.setText(
-                    f"The quotient of {self.first_num.toPlainText()} and {self.sec_num.toPlainText()} is {float(int(self.first_num.toPlainText()) / int(self.sec_num.toPlainText()))}")
-                ans.setWindowTitle("Division / Quotient")
+                    f"The sum of {self.first_num.toPlainText().strip()} and {self.sec_num.toPlainText().strip()} is {sum}")
+                ans.setWindowTitle("Addition / Sum")
                 ans.setStandardButtons(QMessageBox.Ok)
                 x = ans.exec_()
             else:
@@ -171,6 +114,104 @@ class Ui_MainUI(object):
                 ans.setWindowTitle("Error")
                 ans.setStandardButtons(QMessageBox.Ok)
                 x = ans.exec_()
+        except ValueError:
+            ans = QMessageBox()
+            ans.setIcon(QMessageBox.Critical)
+            ans.setText(
+                f"Input value must me a number!")
+            ans.setWindowTitle("Error")
+            ans.setStandardButtons(QMessageBox.Ok)
+            x = ans.exec_()
+
+    def sub_onclick(self):
+        try:
+            if (len(str(self.first_num.toPlainText())) > 0 and len(str(self.sec_num.toPlainText())) > 0):
+                ans = QMessageBox()
+                ans.setIcon(QMessageBox.Information)
+                ans.setText(
+                    f"{self.first_num.toPlainText().strip()} subtracted by {self.sec_num.toPlainText().strip()} is {float(self.first_num.toPlainText()) - float(self.sec_num.toPlainText())}")
+                ans.setWindowTitle("Subtraction")
+                ans.setStandardButtons(QMessageBox.Ok)
+                x = ans.exec_()
+            else:
+                ans = QMessageBox()
+                ans.setIcon(QMessageBox.Critical)
+                ans.setText(
+                    f"Input value cannot be empty!")
+                ans.setWindowTitle("Error")
+                ans.setStandardButtons(QMessageBox.Ok)
+                x = ans.exec_()
+        except ValueError:
+            ans = QMessageBox()
+            ans.setIcon(QMessageBox.Critical)
+            ans.setText(
+                f"Input value must me a number!")
+            ans.setWindowTitle("Error")
+            ans.setStandardButtons(QMessageBox.Ok)
+            x = ans.exec_()
+
+    def mul_onclick(self):
+        try:
+            if (len(str(self.first_num.toPlainText()).strip()) > 0 and len(str(self.sec_num.toPlainText()).strip()) > 0):
+                ans = QMessageBox()
+                ans.setIcon(QMessageBox.Information)
+                ans.setText(
+                    f"The product of {self.first_num.toPlainText().strip()} and {self.sec_num.toPlainText().strip()} is {float(self.first_num.toPlainText()) * float(self.sec_num.toPlainText())}")
+                ans.setWindowTitle("Multiplication / Product")
+                ans.setStandardButtons(QMessageBox.Ok)
+                x = ans.exec_()
+            else:
+                ans = QMessageBox()
+                ans.setIcon(QMessageBox.Critical)
+                ans.setText(
+                    f"Input value cannot be empty!")
+                ans.setWindowTitle("Error")
+                ans.setStandardButtons(QMessageBox.Ok)
+                x = ans.exec_()
+        except ValueError:
+            ans = QMessageBox()
+            ans.setIcon(QMessageBox.Critical)
+            ans.setText(
+                f"Input value must me a number!")
+            ans.setWindowTitle("Error")
+            ans.setStandardButtons(QMessageBox.Ok)
+            x = ans.exec_()
+
+    def div_onclick(self):
+        try:
+            if str(self.sec_num.toPlainText().strip()) == "0":
+                ans = QMessageBox()
+                ans.setIcon(QMessageBox.Critical)
+                ans.setText(
+                    f"You can't divide by zero!")
+                ans.setWindowTitle("Error")
+                ans.setStandardButtons(QMessageBox.Ok)
+                x = ans.exec_()
+            else:
+                if (len(str(self.first_num.toPlainText()).strip()) > 0 and len(str(self.sec_num.toPlainText()).strip()) > 0):
+                    ans = QMessageBox()
+                    ans.setIcon(QMessageBox.Information)
+                    ans.setText(
+                        f"The quotient of {self.first_num.toPlainText().strip()} and {self.sec_num.toPlainText().strip()} is {float(float(self.first_num.toPlainText()) / float(self.sec_num.toPlainText()))}")
+                    ans.setWindowTitle("Division / Quotient")
+                    ans.setStandardButtons(QMessageBox.Ok)
+                    x = ans.exec_()
+                else:
+                    ans = QMessageBox()
+                    ans.setIcon(QMessageBox.Critical)
+                    ans.setText(
+                        f"Input value cannot be empty!")
+                    ans.setWindowTitle("Error")
+                    ans.setStandardButtons(QMessageBox.Ok)
+                    x = ans.exec_()
+        except ValueError:
+            ans = QMessageBox()
+            ans.setIcon(QMessageBox.Critical)
+            ans.setText(
+                f"Input value must me a number!")
+            ans.setWindowTitle("Error")
+            ans.setStandardButtons(QMessageBox.Ok)
+            x = ans.exec_()
 
 
 if __name__ == "__main__":
