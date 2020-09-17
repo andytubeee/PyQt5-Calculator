@@ -98,6 +98,9 @@ class Ui_MainUI(object):
                 if "." in str(self.first_num.toPlainText()) or "." in str(self.sec_num.toPlainText()):
                     sum = float(float(self.first_num.toPlainText()) +
                                 float(self.sec_num.toPlainText()))
+
+                    if str(sum)[-2:] == '.0':
+                        sum = str(sum)[:-2]
                 else:
                     sum = int(int(self.first_num.toPlainText()) +
                               int(self.sec_num.toPlainText()))
@@ -128,8 +131,19 @@ class Ui_MainUI(object):
             if (len(str(self.first_num.toPlainText())) > 0 and len(str(self.sec_num.toPlainText())) > 0):
                 ans = QMessageBox()
                 ans.setIcon(QMessageBox.Information)
+
+                if "." in str(self.first_num.toPlainText()) or "." in str(self.sec_num.toPlainText()):
+                    diff = float(float(self.first_num.toPlainText()
+                                       ) - float(self.sec_num.toPlainText()))
+
+                    if str(diff)[-2:] == '.0':
+                        diff = str(diff)[:-2]
+                else:
+                    diff = int(int(self.first_num.toPlainText()) -
+                               int(self.sec_num.toPlainText()))
+
                 ans.setText(
-                    f"{self.first_num.toPlainText().strip()} subtracted by {self.sec_num.toPlainText().strip()} is {float(self.first_num.toPlainText()) - float(self.sec_num.toPlainText())}")
+                    f"{self.first_num.toPlainText().strip()} subtracted by {self.sec_num.toPlainText().strip()} is {diff}")
                 ans.setWindowTitle("Subtraction")
                 ans.setStandardButtons(QMessageBox.Ok)
                 x = ans.exec_()
@@ -155,8 +169,20 @@ class Ui_MainUI(object):
             if (len(str(self.first_num.toPlainText()).strip()) > 0 and len(str(self.sec_num.toPlainText()).strip()) > 0):
                 ans = QMessageBox()
                 ans.setIcon(QMessageBox.Information)
+
+                if "." in str(self.first_num.toPlainText()) or "." in str(self.sec_num.toPlainText()):
+                    prod = float(float(self.first_num.toPlainText())
+                                 * float(self.sec_num.toPlainText()))
+
+                    if str(prod)[-2:] == '.0':
+                        prod = str(prod)[:-2]
+
+                else:
+                    prod = int(int(self.first_num.toPlainText())
+                               * int(self.sec_num.toPlainText()))
+
                 ans.setText(
-                    f"The product of {self.first_num.toPlainText().strip()} and {self.sec_num.toPlainText().strip()} is {float(self.first_num.toPlainText()) * float(self.sec_num.toPlainText())}")
+                    f"The product of {self.first_num.toPlainText().strip()} and {self.sec_num.toPlainText().strip()} is {prod}")
                 ans.setWindowTitle("Multiplication / Product")
                 ans.setStandardButtons(QMessageBox.Ok)
                 x = ans.exec_()
@@ -191,8 +217,15 @@ class Ui_MainUI(object):
                 if (len(str(self.first_num.toPlainText()).strip()) > 0 and len(str(self.sec_num.toPlainText()).strip()) > 0):
                     ans = QMessageBox()
                     ans.setIcon(QMessageBox.Information)
+
+                    quo = float(float(self.first_num.toPlainText())
+                                / float(self.sec_num.toPlainText()))
+
+                    if str(quo)[-2:] == ".0":
+                        quo = str(quo)[:-2]
+
                     ans.setText(
-                        f"The quotient of {self.first_num.toPlainText().strip()} and {self.sec_num.toPlainText().strip()} is {float(float(self.first_num.toPlainText()) / float(self.sec_num.toPlainText()))}")
+                        f"The quotient of {self.first_num.toPlainText().strip()} and {self.sec_num.toPlainText().strip()} is {quo}")
                     ans.setWindowTitle("Division / Quotient")
                     ans.setStandardButtons(QMessageBox.Ok)
                     x = ans.exec_()
